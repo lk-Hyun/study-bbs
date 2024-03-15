@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -47,5 +49,10 @@ public class PostService {
         if (post.getPassword().equals(dto.password())) {
             postRepository.deleteById(post.getId());
         }
+    }
+
+    //test
+    public List<Object[]> getAllPosts() {
+        return postRepository.findAllProjectedFields();
     }
 }
