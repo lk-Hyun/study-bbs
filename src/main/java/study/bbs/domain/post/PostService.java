@@ -53,6 +53,6 @@ public class PostService {
 
     //test
     public List<Object[]> getAllPosts() {
-        return postRepository.findAllProjectedFields();
+        return  postRepository.findAllProjectedFields();
     }
 }

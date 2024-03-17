@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query("SELECT p.id, p.title, p.content, p.createdAt, p.lastModifiedAt FROM Post p")
+    @Query("SELECT p.id, p.password, p.title, p.content FROM Post p")
     List<Object[]> findAllProjectedFields();
 
 }
