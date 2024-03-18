@@ -1,6 +1,5 @@
 package study.bbs.domain.post;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,7 @@ class PostServiceTest {
 
     @Test
     void posting_success() throws Exception {
-        PostDto dto = new PostDto(null, 6L, "g-label", "1234", "test-title", "hello world");
+        PostRequest dto = new PostRequest(null, 6L, "g-label", "1234", "test-title", "hello world");
 
         //when
         Long posting = postService.posting(dto);
@@ -36,7 +35,7 @@ class PostServiceTest {
 
     @Test
     void update_success() throws Exception {
-        PostDto dto = new PostDto(null, 1L, "new-label", "1234", "new-title!", "new-content!");
+        PostRequest dto = new PostRequest(null, 1L, "new-label", "1234", "new-title!", "new-content!");
 
         //when
         Post post = postService.getPost(1L);

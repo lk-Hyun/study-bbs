@@ -27,7 +27,7 @@ public class PostService {
      *  게시글은 최소 제약 조건만 넘기면 생성가능
      *  test 를 위해 Long 반환
      */
-    public Long posting(PostDto dto) throws Exception {
+    public Long posting(PostRequest dto) throws Exception {
         Post post = dto.toEntity();
         // member 가 존재한다면 member_id 할당
         if (dto.memberId() != null) {
@@ -38,7 +38,7 @@ public class PostService {
     }
 
     /* password 일치 시 수정 */
-    public void update(PostDto dto) throws Exception {
+    public void update(PostRequest dto) throws Exception {
         Post post = postRepository.findById(dto.id()).orElseThrow(
                 () -> new Exception("잘못된 정보입니다.")
         );
@@ -51,7 +51,7 @@ public class PostService {
     }
 
     /* password 일치 시 삭제 */
-    public void delete(PostDto dto) throws Exception {
+    public void delete(PostRequest dto) throws Exception {
         Post post = postRepository.findById(dto.id()).orElseThrow(
                 () -> new Exception("잘못된 정보입니다.")
         );

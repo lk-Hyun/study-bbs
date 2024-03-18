@@ -1,6 +1,6 @@
 package study.bbs.domain.post;
 
-public record PostDto(
+public record PostRequest(
         Long memberId,
         Long id,
         String label,
