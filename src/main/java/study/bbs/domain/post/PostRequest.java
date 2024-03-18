@@ -8,7 +8,6 @@ public record PostRequest(
         String title,
         String content
 ) {
-
     public Post toEntity() {
         return Post.builder().label(label).title(title).content(content).password(password).build();
     }
