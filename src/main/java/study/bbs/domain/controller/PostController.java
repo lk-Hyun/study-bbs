@@ -60,4 +60,15 @@ public class PostController {
         }
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @DeleteMapping("/board")
+    public ResponseEntity deletePost(@RequestBody PostRequest dto) {
+        try {
+            postService.delete(dto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
