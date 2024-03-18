@@ -11,4 +11,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("SELECT p.id, p.password, p.title, p.content FROM Post p")
     List<Object[]> findAllProjectedFields();
 
+    Optional<Post> findByLabel(String label);
+
 }

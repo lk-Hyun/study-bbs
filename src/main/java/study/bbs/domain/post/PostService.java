@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import study.bbs.domain.member.MemberRepository;
 
 import java.util.List;
 
@@ -20,15 +21,23 @@ public class PostService {
      */
 
     private final PostRepository postRepository;
+    private final MemberRepository memberRepository;
 
     /**
      *  게시글은 최소 제약 조건만 넘기면 생성가능
      *  test 를 위해 Long 반환
      */
-    public Long posting(Post post) throws Exception {
+    public Long posting(PostDto dto) throws Exception {
+        Post post = dto.toEntity();
+        // member 가 존재한다면 member_id 할당
+        if (dto.memberId() != null) {
+            memberRepository.findById(dto.memberId()).ifPresent(post::setMember);
+        }
+
         return postRepository.save(post).getId();
     }
 
+    /* password 일치 시 수정 */
     public void update(PostDto dto) throws Exception {
         Post post = postRepository.findById(dto.id()).orElseThrow(
                 () -> new Exception("잘못된 정보입니다.")
@@ -41,6 +50,7 @@ public class PostService {
         post.updateContent(dto.content());
     }
 
+    /* password 일치 시 삭제 */
     public void delete(PostDto dto) throws Exception {
         Post post = postRepository.findById(dto.id()).orElseThrow(
                 () -> new Exception("잘못된 정보입니다.")
@@ -51,8 +61,12 @@ public class PostService {
         }
     }
 
-    //test
+    /* for test */
     public List<Object[]> getAllPosts() {
         return  postRepository.findAllProjectedFields();
+    }
+
+    public Post getPost(Long id) {
+        return postRepository.findById(id).get();
     }
 }
