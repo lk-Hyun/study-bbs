@@ -24,7 +24,7 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/board")
-    public List<Object[]> posts() {
+    public List<PostResponse> posts() {
         return postService.getAllPosts();
     }
 
@@ -32,9 +32,8 @@ public class PostController {
     @GetMapping("/board/{id}")
     public PostResponse getPost(@PathVariable(name = "id") Long id) {
         log.info("param id = {}", id);
-        Post post = postService.getPost(id);
 
-        return new PostResponse(id, post.getTitle(), post.getContent(), post.getCreatedAt());
+        return postService.getPost(id);
     }
 
     @PostMapping("/board")

@@ -62,11 +62,11 @@ public class PostService {
     }
 
     /* for test */
-    public List<Object[]> getAllPosts() {
-        return  postRepository.findAllProjectedFields();
+    public List<PostResponse> getAllPosts() {
+        return postRepository.findAllProjectedFields();
     }
 
-    public Post getPost(Long id) {
-        return postRepository.findById(id).get();
+    public PostResponse getPost(Long id) {
+        return postRepository.findResponseById(id);
     }
 }

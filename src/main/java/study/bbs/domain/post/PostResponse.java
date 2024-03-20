@@ -1,10 +1,17 @@
 package study.bbs.domain.post;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
-public record PostResponse(
-        Long id,
-        String title,
-        String content,
-        LocalDateTime createdAt) {
+@Data
+@AllArgsConstructor
+public class PostResponse {
+
+    private Long id;
+    private String title;
+    private String content;
+    private LocalDateTime createdAt;
+
 }
