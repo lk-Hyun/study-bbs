@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import study.bbs.domain.post.Post;
 import study.bbs.domain.post.PostRequest;
 import study.bbs.domain.post.PostResponse;
 import study.bbs.domain.post.PostService;
